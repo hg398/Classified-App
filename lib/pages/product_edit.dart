@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
-
+import 'package:flutter_course/widgets/form_inputs/image.dart';
 import '../widgets/helpers/ensure_visible.dart';
 import '../models/product.dart';
 import '../scoped-models/main.dart';
@@ -127,15 +127,11 @@ class _ProductEditPageState extends State<ProductEditPage> {
               SizedBox(
                 height: 10.0,
               ),
+              ImageInput(),
+              SizedBox(
+                height: 10.0,
+              ),
               _buildSubmitButton(),
-              // GestureDetector(
-              //   onTap: _submitForm,
-              //   child: Container(
-              //     color: Colors.green,
-              //     padding: EdgeInsets.all(5.0),
-              //     child: Text('My Button'),
-              //   ),
-              // )
             ],
           ),
         ),
@@ -158,8 +154,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
         _formData['price'],
       ).then((bool success) {
         if (success) {
-          Navigator
-              .pushReplacementNamed(context, '/products')
+          Navigator.pushReplacementNamed(context, '/products')
               .then((_) => setSelectedProduct(null));
         } else {
           showDialog(
@@ -184,8 +179,7 @@ class _ProductEditPageState extends State<ProductEditPage> {
         _formData['description'],
         _formData['image'],
         _formData['price'],
-      ).then((_) => Navigator
-          .pushReplacementNamed(context, '/products')
+      ).then((_) => Navigator.pushReplacementNamed(context, '/products')
           .then((_) => setSelectedProduct(null)));
     }
   }

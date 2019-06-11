@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 // import 'package:flutter/rendering.dart';
-
+//import 'package:map_view/map_view.dart';
 import './pages/auth.dart';
 import './pages/products_admin.dart';
 import './pages/products.dart';
@@ -14,6 +14,7 @@ void main() {
   // debugPaintSizeEnabled = true;
   // debugPaintBaselinesEnabled = true;
   // debugPaintPointersEnabled = true;
+  //MapView.setApiKey('AIzaSyDaOY8kUFpjev_24ttTUiDlon-3t__IVnw');
   runApp(MyApp());
 }
 

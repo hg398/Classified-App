@@ -244,7 +244,9 @@ class ProductsModel extends ConnectedProductsModel {
 
   void selectProduct(String productId) {
     _selProductId = productId;
-    notifyListeners();
+    if(productId != null){
+      notifyListeners();
+    }
   }
 
   void toggleDisplayMode() {
