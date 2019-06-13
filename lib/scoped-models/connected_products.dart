@@ -184,7 +184,7 @@ class ProductsModel extends ConnectedProductsModel {
       'userId': selectedProduct.userId
     };
     try {
-      final http.Response response = await http.put(
+      await http.put(
           'https://flutter-products-b1948.firebaseio.com/products/${selectedProduct.id}.json?auth=${_authenticatedUser.token}',
           body: json.encode(updateData));
 
@@ -216,7 +216,7 @@ class ProductsModel extends ConnectedProductsModel {
     notifyListeners();
     return http
         .delete(
-            'https://flutter-products-b1948.firebaseio.com/products/${deletedProductId}.json?auth=${_authenticatedUser.token}')
+            'https://flutter-products-b1948.firebaseio.com/products/$deletedProductId.json?auth=${_authenticatedUser.token}')
         .then((http.Response response) {
       _isLoading = false;
       notifyListeners();
@@ -228,8 +228,12 @@ class ProductsModel extends ConnectedProductsModel {
     });
   }
 
-  Future<Null> fetchProducts({onlyForUser = false}) {
+  Future<Null> fetchProducts({onlyForUser = false, clearExisting = false}) {
     _isLoading = true;
+    if (clearExisting) {
+      _products = [];
+    }
+    
     notifyListeners();
     return http
         .get(
@@ -276,6 +280,9 @@ class ProductsModel extends ConnectedProductsModel {
   void toggleProductFavoriteStatus() async {
     final bool isCurrentlyFavorite = selectedProduct.isFavorite;
     final bool newFavoriteStatus = !isCurrentlyFavorite;
+    // final int toggledProdutIndex = _products.indexWhere((Product product){
+    //   return product.id == toggledProduct.id;
+    // });
     final Product updatedProduct = Product(
         id: selectedProduct.id,
         title: selectedProduct.title,
@@ -311,6 +318,7 @@ class ProductsModel extends ConnectedProductsModel {
       _products[selectedProductIndex] = updatedProduct;
       notifyListeners();
     }
+    _selProductId = null;
   }
 
   void selectProduct(String productId) {
@@ -421,6 +429,7 @@ class UserModel extends ConnectedProductsModel {
     _authenticatedUser = null;
     _authTimer.cancel();
     _userSubject.add(false);
+    _selProductId = null;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('token');
     prefs.remove('userEmail');
