@@ -28,6 +28,8 @@ dependencies:
   shared_preferences: ^0.5.3+1
   scoped_model: ^1.0.1
   image_picker_modern: ^0.4.12+2
+  mime: ^0.9.6+3
+  url_launcher: ^5.0.3
 
 dev_dependencies:
   flutter_test:
