@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course/shared/adaptive_theme.dart';
-
 import 'package:scoped_model/scoped_model.dart';
-// import 'package:flutter/rendering.dart';
+//import 'package:flutter/rendering.dart';
 //import 'package:map_view/map_view.dart';
 import 'package:flutter_course/shared/global_config.dart';
 import './pages/auth.dart';
