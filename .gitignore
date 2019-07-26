@@ -70,5 +70,5 @@
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
 **functions/node_modules/
-**lib/scoped-models/
-**lib/shared/
+**lib/scoped-models/connected_products.dart
+**lib/shared/global_config.dart
